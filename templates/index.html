@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sidequest</title>
+</head>
+<body>
+    <h1>Sidequestit</h1>
+    {% if session["username"] %}
+        <p>Kirjautunut: {{ session["username"] }} | <a href="/logout">Kirjaudu ulos</a> | <a href="/new">Luo uusi sidequest</a></p>
+    {% else %}
+        <p><a href="/login">Kirjaudu sisään</a> | <a href="/register">Rekisteröidy</a></p>
+    {% endif %}
+    <form action="/" method="get">
+        <input type="text" name="search" value="{{ search }}" placeholder="Hae nimellä..." />
+        <input type="submit" value="Hae" />
+        <select name="sort" onchange="this.form.submit()">
+            <option value="name" {% if sort == "name" %}selected{% endif %}>Nimi (A-Ö)</option>
+            <option value="time_asc" {% if sort == "time_asc" %}selected{% endif %}>Kesto (lyhyin ensin)</option>
+            <option value="time_desc" {% if sort == "time_desc" %}selected{% endif %}>Kesto (pisin ensin)</option>
+            <option value="completed" {% if sort == "completed" %}selected{% endif %}>Suoritettu / ei suoritettu</option>
+        </select>
+    </form>
+    <ul>
+        {% for quest in sidequests %}
+        <li>
+            <a href="/quest/{{ quest['id'] }}">{{ quest["name"] }}</a>
+            ({{ quest["time_estimate"] }})
+            {% if quest["completed"] %}✅{% else %}❌{% endif %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

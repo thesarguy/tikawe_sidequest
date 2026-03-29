@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ quest["name"] }}</title>
+</head>
+<body>
+    <h1>{{ quest["name"] }}</h1>
+    <p>Aika-arvio: {{ quest["time_estimate"] }}</p>
+    <p>Status: {% if quest["completed"] %}Suoritettu{% else %}Suorittamatta{% endif %}</p>
+    <p>Kuvaus: {{ quest["description"] }}</p>
+    {% if session["username"] %}
+    <a href="/edit/{{ quest['id'] }}">Muokkaa</a> |
+    <a href="/delete/{{ quest['id'] }}">Poista</a> |
+    {% if quest["completed"] %}
+        <a href="/complete/{{ quest['id'] }}">Merkitse ei-suoritetuksi</a>
+    {% else %}
+        <a href="/complete/{{ quest['id'] }}">Merkitse suoritetuksi</a>
+    {% endif %}
+{% endif %}
+    <br /><br />
+    <a href="/">Takaisin</a>
+</body>
+</html>

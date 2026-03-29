@@ -1,4 +1,4 @@
-# tikawe_sidequest
+
 # Sidequest
 
 Sidequest on websovellus jossa käyttäjät voivat luoda ja selata sidequesteja eli pieniä tehtäviä tai aktiviteetteja. 
