@@ -1,0 +1,46 @@
+body {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1em;
+    font-family: sans-serif;
+}
+
+h1 {
+    border-bottom: 1px solid #000000;
+    padding-bottom: 0.3em;
+}
+
+.info {
+    background: #000000;
+    border: 1px solid #000000;
+    padding: 0.5em;
+    margin: 0.5em 0;
+}
+
+.item {
+    border: 1px solid #000000;
+    padding: 0.5em;
+    margin-bottom: 2em;
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+table th, table td {
+    border: 1px solid #000000;
+    padding: 0.3em 0.6em;
+}
+
+input[type=text], input[type=password], textarea, select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 0.3em;
+    margin: 0.2em 0;
+}
+
+input[type=submit], button {
+    padding: 0.3em 0.8em;
+    cursor: pointer;
+}
