@@ -1,14 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Kirjaudu</title>
-</head>
-<body>
-    <h1>Kirjaudu sisään</h1>
-    <form action="/login" method="post">
-        <p>Käyttäjänimi: <input type="text" name="username" /></p>
-        <p>Salasana: <input type="password" name="password" /></p>
-        <input type="submit" value="Kirjaudu" />
-    </form>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Log in{% endblock %}
+
+{% block content %}
+<h2>Log in</h2>
+
+<form action="/login" method="post">
+  <input type="hidden" name="next_page" value="{{ next_page }}">
+  <p>
+    <label for="username">Username</label>:<br />
+    <input type="text" name="username" id="username" value="{{ username or '' }}" />
+  </p>
+  <p>
+    <label for="password">Password</label>:<br />
+    <input type="password" name="password" id="password" />
+  </p>
+  <input type="submit" value="Log in" />
+</form>
+
+<p><a href="/register">Register</a></p>
+{% endblock %}

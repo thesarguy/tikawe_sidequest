@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{% block title %}SideQuest{% endblock %}</title>
+  <link rel="stylesheet" href="/static/main.css">
+</head>
+
+<body>
+  <h1>SideQuest</h1>
+
+  {% if session.user_id %}
+  <p>Logged in as <a href="/user/{{ session.user_id }}">{{ session.username }}</a></p>
+  {% endif %}
+
+  <p>
+    <a href="/">Home</a> |
+    <a href="/search">Search</a> |
+    {% if session.user_id %}
+      <a href="/new_quest">New quest</a> |
+      <a href="/logout">Log out</a>
+    {% else %}
+      <a href="/login">Log in</a> |
+      <a href="/register">Register</a>
+    {% endif %}
+  </p>
+
+  {% for message in get_flashed_messages() %}
+  <div class="info">{{ message }}</div>
+  {% endfor %}
+
+  {% block content %}{% endblock %}
+
+</body>
+
+</html>

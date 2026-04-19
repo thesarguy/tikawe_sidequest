@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+{% block title %}New quest{% endblock %}
+
+{% block content %}
+<h2>New quest</h2>
+
+<form action="/create_quest" method="post">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+  <p>
+    <label for="title">Title</label>:<br />
+    <input type="text" name="title" id="title" maxlength="100" required />
+  </p>
+  <p>
+    <label for="description">Description</label>:<br />
+    <textarea name="description" id="description" rows="6" maxlength="2000" required></textarea>
+  </p>
+  <p>
+    <label for="instructions">Instructions (optional)</label>:<br />
+    <textarea name="instructions" id="instructions" rows="4"></textarea>
+  </p>
+  <p>
+    <label for="difficulty">Difficulty</label>:<br />
+    <select name="difficulty" id="difficulty">
+      <option value="">– Select –</option>
+      {% for d in difficulties %}
+      <option value="{{ d }}">{{ d }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="duration">Estimated duration</label>:<br />
+    <select name="duration" id="duration">
+      <option value="">– Select –</option>
+      {% for k in kesto %}
+      <option value="{{ k }}">{{ k }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <p>Tags (select one or more):<br />
+    {% for tag in all_tags %}
+    <label>
+      <input type="checkbox" name="tags" value="{{ tag.id }}"> {{ tag.name }}
+    </label>
+    {% endfor %}
+  </p>
+  <input type="submit" value="Add quest" />
+</form>
+
+{% endblock %}

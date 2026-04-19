@@ -1,23 +1,87 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>{{ quest["name"] }}</title>
-</head>
-<body>
-    <h1>{{ quest["name"] }}</h1>
-    <p>Aika-arvio: {{ quest["time_estimate"] }}</p>
-    <p>Status: {% if quest["completed"] %}Suoritettu{% else %}Suorittamatta{% endif %}</p>
-    <p>Kuvaus: {{ quest["description"] }}</p>
-    {% if session["username"] %}
-    <a href="/edit/{{ quest['id'] }}">Muokkaa</a> |
-    <a href="/delete/{{ quest['id'] }}">Poista</a> |
-    {% if quest["completed"] %}
-        <a href="/complete/{{ quest['id'] }}">Merkitse ei-suoritetuksi</a>
-    {% else %}
-        <a href="/complete/{{ quest['id'] }}">Merkitse suoritetuksi</a>
-    {% endif %}
+{% extends "layout.html" %}
+{% block title %}{{ quest.title }}{% endblock %}
+
+{% block content %}
+<h2>{{ quest.title }}</h2>
+
+{% if session.user_id == quest.user_id %}
+<p>
+  <a href="/edit_quest/{{ quest.id }}">Edit</a> |
+  <a href="/remove_quest/{{ quest.id }}">Delete</a>
+</p>
 {% endif %}
-    <br /><br />
-    <a href="/">Takaisin</a>
-</body>
-</html>
+
+<ul>
+  <li>Difficulty: {{ quest.difficulty or "–" }}</li>
+  <li>Duration: {{ quest.estimated_duration or "–" }}</li>
+  <li>Added by: <a href="/user/{{ quest.user_id }}">{{ quest.username }}</a></li>
+  <li>Added: {{ quest.created_at[:10] }}</li>
+  <li>Completed by {{ completion_count }} user(s)</li>
+  {% if tags %}
+  <li>Tags:
+    {% for tag in tags %}
+      <a href="/search?tag_id={{ tag.id }}">{{ tag.name }}</a>{% if not loop.last %}, {% endif %}
+    {% endfor %}
+  </li>
+  {% endif %}
+</ul>
+
+<p>{{ quest.description }}</p>
+
+{% if quest.instructions %}
+<h3>Instructions</h3>
+<p>{{ quest.instructions }}</p>
+{% endif %}
+
+{% if session.user_id %}
+  {% if user_completed %}
+  <form action="/uncomplete_quest" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="hidden" name="quest_id" value="{{ quest.id }}">
+    <input type="submit" value="Mark as incomplete">
+  </form>
+  {% else %}
+  <form action="/complete_quest" method="post">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="hidden" name="quest_id" value="{{ quest.id }}">
+    <input type="submit" value="✅ Mark as completed">
+  </form>
+  {% endif %}
+{% endif %}
+
+<h3>Comments ({{ comments | length }})</h3>
+
+{% for comment in comments %}
+<div class="item">
+  <a href="/user/{{ comment.user_id }}">{{ comment.username }}</a> — {{ comment.created_at[:10] }}
+  <br />
+  {{ comment.content }}
+  {% if session.user_id == comment.user_id %}
+  <br />
+  <form action="/remove_comment" method="post" style="display:inline;">
+    <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+    <input type="hidden" name="comment_id" value="{{ comment.id }}">
+    <input type="submit" value="Delete comment"
+           onclick="return confirm('Delete this comment?')">
+  </form>
+  {% endif %}
+</div>
+{% else %}
+<p>No comments yet.</p>
+{% endfor %}
+
+{% if session.user_id %}
+<h3>Add a comment</h3>
+<form action="/create_comment" method="post">
+  <input type="hidden" name="csrf_token" value="{{ session.csrf_token }}">
+  <input type="hidden" name="quest_id" value="{{ quest.id }}">
+  <p>
+    <textarea name="content" rows="4" maxlength="1000" required></textarea>
+  </p>
+  <input type="submit" value="Submit">
+</form>
+{% else %}
+<p><a href="/login">Log in</a> to add a comment.</p>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends "layout.html" %}
+{% block title %}Search{% endblock %}
+
+{% block content %}
+<h2>Search</h2>
+
+<form action="/search" method="get">
+  <p>
+    <label for="query">Keyword</label>:
+    <input type="text" name="query" id="query" value="{{ query }}">
+  </p>
+  <p>
+    <label for="difficulty">Difficulty</label>:
+    <select name="difficulty" id="difficulty">
+      <option value="">All</option>
+      {% for d in difficulties %}
+      <option value="{{ d }}" {% if difficulty == d %}selected{% endif %}>{{ d }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="duration">Duration</label>:
+    <select name="duration" id="duration">
+      <option value="">All</option>
+      {% for k in kesto %}
+      <option value="{{ k }}" {% if duration == k %}selected{% endif %}>{{ k }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <p>
+    <label for="tag_id">Tag</label>:
+    <select name="tag_id" id="tag_id">
+      <option value="">All</option>
+      {% for tag in all_tags %}
+      <option value="{{ tag.id }}" {% if tag_id|string == tag.id|string %}selected{% endif %}>{{ tag.name }}</option>
+      {% endfor %}
+    </select>
+  </p>
+  <input type="submit" value="Search">
+</form>
+
+<h3>Results ({{ results | length }})</h3>
+
+{% for q in results %}
+<div class="item">
+  <a href="/quest/{{ q.id }}">{{ q.title }}</a><br />
+  <a href="/user/{{ q.user_id }}">{{ q.username }}</a> |
+  {{ q.difficulty or "–" }} |
+  {{ q.estimated_duration or "–" }}
+  <br />
+  {{ q.description[:150] }}{% if q.description | length > 150 %}…{% endif %}
+</div>
+{% else %}
+<p>No results.</p>
+{% endfor %}
+
+{% endblock %}

@@ -1,33 +1,22 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Sidequest</title>
-</head>
-<body>
-    <h1>Sidequestit</h1>
-    {% if session["username"] %}
-        <p>Kirjautunut: {{ session["username"] }} | <a href="/logout">Kirjaudu ulos</a> | <a href="/new">Luo uusi sidequest</a></p>
-    {% else %}
-        <p><a href="/login">Kirjaudu sisään</a> | <a href="/register">Rekisteröidy</a></p>
-    {% endif %}
-    <form action="/" method="get">
-        <input type="text" name="search" value="{{ search }}" placeholder="Hae nimellä..." />
-        <input type="submit" value="Hae" />
-        <select name="sort" onchange="this.form.submit()">
-            <option value="name" {% if sort == "name" %}selected{% endif %}>Nimi (A-Ö)</option>
-            <option value="time_asc" {% if sort == "time_asc" %}selected{% endif %}>Kesto (lyhyin ensin)</option>
-            <option value="time_desc" {% if sort == "time_desc" %}selected{% endif %}>Kesto (pisin ensin)</option>
-            <option value="completed" {% if sort == "completed" %}selected{% endif %}>Suoritettu / ei suoritettu</option>
-        </select>
-    </form>
-    <ul>
-        {% for quest in sidequests %}
-        <li>
-            <a href="/quest/{{ quest['id'] }}">{{ quest["name"] }}</a>
-            ({{ quest["time_estimate"] }})
-            {% if quest["completed"] %}✅{% else %}❌{% endif %}
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}SideQuest{% endblock %}
+
+{% block content %}
+<h2>Quests</h2>
+
+{% for quest in quests %}
+<div class="item">
+  <a href="/quest/{{ quest.id }}">{{ quest.title }}</a>
+  {% if quest.id in completed_ids %}✅{% endif %}
+  <br />
+  Added by: <a href="/user/{{ quest.user_id }}">{{ quest.username }}</a> |
+  Difficulty: {{ quest.difficulty or "–" }} |
+  Duration: {{ quest.estimated_duration or "–" }}
+  <br />
+  {{ quest.description[:150] }}{% if quest.description | length > 150 %}…{% endif %}
+</div>
+{% else %}
+<p>No quests yet. <a href="/new_quest">Add the first one!</a></p>
+{% endfor %}
+
+{% endblock %}

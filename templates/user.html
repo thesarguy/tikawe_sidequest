@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+{% block title %}User {{ user.username }}{% endblock %}
+
+{% block content %}
+<h2>User {{ user.username }}</h2>
+
+<ul>
+  <li>Quests added: {{ stats.quest_count }}</li>
+  <li>Quests completed: {{ stats.quests_completed }}</li>
+  <li>Comments sent: {{ stats.comments_sent }}</li>
+  <li>Comments received: {{ stats.comments_received }}</li>
+</ul>
+
+<h3>Added quests</h3>
+<ul>
+  {% for q in quests %}
+  <li>
+    <a href="/quest/{{ q.id }}">{{ q.title }}</a>
+    — {{ q.difficulty or "–" }} — {{ q.estimated_duration or "–" }} — {{ q.created_at[:10] }}
+  </li>
+  {% else %}
+  <li>No quests added yet.</li>
+  {% endfor %}
+</ul>
+
+{% endblock %}

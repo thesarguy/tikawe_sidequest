@@ -1,40 +1,32 @@
+SideQuest
+SideQuest is a web application where users can create and browse sidequests — small tasks or activities to do when bored.
+Features
 
-# Sidequest
+Users can create an account and log in/out, or browse without an account
+Logged-in users can create, edit and delete sidequests
+Logged-in users can mark a sidequest as completed or incomplete (per user)
+Sidequests can be tagged with one or more categories
+Sidequests can be searched by keyword, difficulty, duration and tag
+Each sidequest page shows comments from other users
+User pages show statistics and a list of quests added by that user
 
-Sidequest on websovellus jossa käyttäjät voivat luoda ja selata sidequesteja eli pieniä tehtäviä tai aktiviteetteja. 
+Setup
 
-# Toiminnot
+Install Flask: pip install flask
+Create config.py in the project root with: secret_key = "your_secret_key_here"
 
-- Käyttäjä voi luoda tunnuksen ja kirjautua sisään/ulos, sekä katsella ilman tunnusta
-- Kirjautunut käyttäjä voi luoda, muokata ja poistaa sidequesteja
-- Kirjautunut käyttäjä voi merkata sidequestin suoritetuksi tai ei-suoritetuksi
-- Sidequesteja voi hakea nimellä
-- Sidequesteja voi lajitella nimen, keston tai suoritusstatuksen mukaan
+Generate a secure key with: python -c "import secrets; print(secrets.token_hex(32))"
 
-# Sovelluksen käynnistäminen
 
-1. Asenna Flask: pip install flask
+Create the database: sqlite3 database.db < schema.sql
+Run the application: flask run
+Open in browser: http://127.0.0.1:5000
 
-2. luo config.py tiedoston juureen, ja lisää siihen: secret_key = "(oma salainen avain tähän)"
+Testing
 
-2. Luo tietokanta: python -c "import sqlite3; db=sqlite3.connect('database.db'); db.executescript(open('schema.sql').read()); db.commit()"
-
-3. Käynnistä sovellus pythonin terminaalissa: python -m flask run
-4. Avaa selaimessa: http://127.0.0.1:5000
-
-# Testaaminen
-
-- Luo tunnus rekisteröitymissivulla
-- Kirjaudu sisään
-- Luo uusi sidequest "Luo uusi sidequest" -linkistä
-- Muokkaa tai poista sidequestia avaamalla sen sivu
-- Kokeile hakua ja lajittelua etusivulla
-
-# to-do
-
-- suoritusmerkintä on kaikkien käyttäjien kanssa yhteinen, muutetaan käyttäjäkohtaiseksi tulevaisuudessa
-- tällä hetkellä ei ole esimerkki sidequesteja, vaan test-caseja sivun toimintaa varten, pitäisi tehdä iso kasa niitä lisää,
-- ulkoasun parantaminen
-- salasana- ja käyttäjänimivaatimukset
-- tilastot
-- muokkaushistoria
+Register an account on the register page
+Log in
+Create a new sidequest using the "New quest" link
+Open a quest to edit, delete, complete or comment on it
+Try searching and filtering on the search page
+Check the user page by clicking a username

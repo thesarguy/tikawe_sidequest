@@ -1,15 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Rekisteröidy</title>
-</head>
-<body>
-    <h1>Rekisteröidy</h1>
-    <form action="/register" method="post">
-        <p>Käyttäjänimi: <input type="text" name="username" maxlength="50" required /></p>
-        <p>Salasana: <input type="password" name="password1" required /></p>
-        <p>Salasana uudelleen: <input type="password" name="password2" required /></p>
-        <input type="submit" value="Rekisteröidy" />
-    </form>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+<h2>Register</h2>
+
+<form action="/create_user" method="post">
+  <p>
+    <label for="username">Username (max 20 characters)</label>:<br />
+    <input type="text" name="username" id="username" maxlength="20" />
+  </p>
+  <p>
+    <label for="password1">Password (min 6 characters)</label>:<br />
+    <input type="password" name="password1" id="password1" />
+  </p>
+  <p>
+    <label for="password2">Password again</label>:<br />
+    <input type="password" name="password2" id="password2" />
+  </p>
+  <input type="submit" value="Register" />
+</form>
+
+<p><a href="/login">Log in</a></p>
+{% endblock %}
