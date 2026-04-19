@@ -1,4 +1,5 @@
 SideQuest
+
 SideQuest is a web application where users can create and browse sidequests — small tasks or activities to do when bored.
 Features
 
