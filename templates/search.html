@@ -22,7 +22,7 @@
     <label for="duration">Duration</label>:
     <select name="duration" id="duration">
       <option value="">All</option>
-      {% for k in kesto %}
+      {% for k in lengths %}
       <option value="{{ k }}" {% if duration == k %}selected{% endif %}>{{ k }}</option>
       {% endfor %}
     </select>

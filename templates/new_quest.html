@@ -31,7 +31,7 @@
     <label for="duration">Estimated duration</label>:<br />
     <select name="duration" id="duration">
       <option value="">– Select –</option>
-      {% for k in kesto %}
+      {% for k in lengths %}
       <option value="{{ k }}">{{ k }}</option>
       {% endfor %}
     </select>

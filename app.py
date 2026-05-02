@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.secret_key = config.secret_key
 
 DIFFICULTIES = ["helppo", "keskitaso", "haastava", "erittäin haastava"]
-KESTO = ["alle 15 min", "15–30 min", "30–60 min", "1–3 tuntia", "useita tunteja", "useita päiviä"]
+LENGTHS = ["alle 15 min", "15–30 min", "30–60 min", "1–3 tuntia", "useita tunteja", "useita päiviä"]
 
 
 def require_login():
@@ -47,7 +47,7 @@ def search():
     return render_template("search.html", results=results, query=query,
                            difficulty=difficulty, duration=duration,
                            tag_id=tag_id, difficulties=DIFFICULTIES,
-                           kesto=KESTO, all_tags=all_tags)
+                           lengths=LENGTHS, all_tags=all_tags)
 
 
 @app.route("/quest/<int:quest_id>")
@@ -94,7 +94,7 @@ def new_quest():
     require_login()
     all_tags = sidequests.get_all_tags()
     return render_template("new_quest.html", difficulties=DIFFICULTIES,
-                           kesto=KESTO, all_tags=all_tags)
+                           lengths=LENGTHS, all_tags=all_tags)
 
 
 @app.route("/create_quest", methods=["POST"])
@@ -129,7 +129,7 @@ def edit_quest(quest_id):
     all_tags = sidequests.get_all_tags()
     current_tag_ids = {row["id"] for row in sidequests.get_quest_tags(quest_id)}
     return render_template("edit_quest.html", quest=quest,
-                           difficulties=DIFFICULTIES, kesto=KESTO,
+                           difficulties=DIFFICULTIES, lengths=LENGTHS,
                            all_tags=all_tags, current_tag_ids=current_tag_ids)
 
 
