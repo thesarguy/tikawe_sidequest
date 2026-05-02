@@ -11,8 +11,11 @@ import users
 app = Flask(__name__)
 app.secret_key = config.secret_key
 
+#closes database connection automatically at the end of each request
 app.teardown_appcontext(db.close_connection)
 
+#these lists define allowed values for difficulty and duration
+#passed to templates to fill dropdown menus
 DIFFICULTIES = ["helppo", "keskitaso", "haastava", "erittäin haastava"]
 LENGTHS = ["alle 15 min", "15–30 min", "30–60 min", "1–3 tuntia", "useita tunteja", "useita päiviä"]
 
@@ -126,6 +129,7 @@ def edit_quest(quest_id):
     quest = sidequests.get_quest(quest_id)
     if not quest:
         abort(404)
+    #confirm only owner of quest can edit it
     if quest["user_id"] != session["user_id"]:
         abort(403)
     all_tags = sidequests.get_all_tags()
@@ -165,12 +169,15 @@ def remove_quest(quest_id):
     quest = sidequests.get_quest(quest_id)
     if not quest:
         abort(404)
+    #only quest's creator can delete it
     if quest["user_id"] != session["user_id"]:
         abort(403)
     if request.method == "GET":
+        #confirmation before deleting 
         return render_template("delete_quest.html", quest=quest)
     check_csrf()
     if "confirm" in request.form:
+        #"soft delete", changes status to 0 instead of removing from database
         sidequests.remove_quest(quest_id)
         flash("Quest deleted.")
         return redirect("/")

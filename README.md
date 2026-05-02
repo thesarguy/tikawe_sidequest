@@ -1,5 +1,5 @@
 SideQuest
-SideQuest is a web application where users can create and browse sidequests — small tasks or activities to do when bored.
+SideQuest is a web application where users can create and browse sidequests, which area small tasks or activities to do when bored.
 Features
 
 Users can create an account and log in/out, or browse without an account
@@ -13,6 +13,7 @@ User pages show statistics and a list of quests added by that user
 Setup
 
 Install Flask: pip install flask
+
 Create config.py in the project root with: secret_key = "your_secret_key_here"
 
 Generate a secure key with: python -c "import secrets; print(secrets.token_hex(32))"
@@ -20,6 +21,8 @@ Generate a secure key with: python -c "import secrets; print(secrets.token_hex(3
 
 Create the database: sqlite3 database.db < schema.sql
 Run the application: flask run
+if flask isn't in path, try:python -m flask run
+
 Open in browser: http://127.0.0.1:5000
 
 Testing
