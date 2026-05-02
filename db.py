@@ -11,6 +11,12 @@ def get_connection():
     return g.db
 
 
+def close_connection(e=None):
+    con = g.pop("db", None)
+    if con is not None:
+        con.close()
+
+
 def execute(sql, params=None):
     if params is None:
         params = []
