@@ -11,6 +11,8 @@ import users
 app = Flask(__name__)
 app.secret_key = config.secret_key
 
+app.teardown_appcontext(db.close_connection)
+
 DIFFICULTIES = ["helppo", "keskitaso", "haastava", "erittäin haastava"]
 LENGTHS = ["alle 15 min", "15–30 min", "30–60 min", "1–3 tuntia", "useita tunteja", "useita päiviä"]
 
