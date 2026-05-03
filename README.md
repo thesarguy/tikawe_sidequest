@@ -3,11 +3,17 @@ SideQuest is a web application where users can create and browse sidequests, whi
 Features
 
 Users can create an account and log in/out, or browse without an account
+
 Logged-in users can create, edit and delete sidequests
+
 Logged-in users can mark a sidequest as completed or incomplete (per user)
+
 Sidequests can be tagged with one or more categories
+
 Sidequests can be searched by keyword, difficulty, duration and tag
+
 Each sidequest page shows comments from other users
+
 User pages show statistics and a list of quests added by that user
 
 Setup
