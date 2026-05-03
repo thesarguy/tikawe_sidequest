@@ -17,7 +17,7 @@ def add_seed():
     ),
     (
         "Käy museossa jossa et ole käynyt",
-        "Valitse museo Helsingistä tai lähialueelta johon et ole ennen astunut sisään. Käy siellä ja katso näyttely kunnolla — älä vain kuittaa käyntiä ovella.",
+        "Valitse museo Helsingistä tai lähialueelta johon et ole ennen astunut sisään. Käy siellä ja katso näyttely kunnolla, älä vain kuittaa käyntiä ovella.",
         "helppo",
         "1–3 tuntia"
     ),
@@ -29,7 +29,7 @@ def add_seed():
     ),
     (
         "Piirrä lempieläimesi",
-        "Piirrä lempieläimesi paperille kynällä tai tussilla. Ei tarvitse olla taideteos — tärkeintä on että eläin on tunnistettavissa. Voit halutessasi värittää sen.",
+        "Piirrä lempieläimesi paperille kynällä tai tussilla. Ei tarvitse olla taideteos, tärkeintä on että eläin on tunnistettavissa. Voit halutessasi värittää sen.",
         "helppo",
         "15–30 min"
     ),
@@ -47,7 +47,7 @@ def add_seed():
     ),
     (
         "Tee yksi ohjelmointiprojekti ilman tekoälyä",
-        "Tee jokin pieni ohjelmointiprojekti — vaikka komentorivityökalu, peli tai skripti — käyttämättä lainkaan tekoälyä (ei ChatGPT, ei Claude, ei Copilot). Voit käyttää dokumentaatiota ja Stack Overflowia.",
+        "Tee jokin pieni ohjelmointiprojekti, vaikka komentorivityökalu, peli tai skripti käyttämättä lainkaan tekoälyä (ei ChatGPT, ei Claude, ei Copilot). Voit käyttää dokumentaatiota ja Stack Overflowia.",
         "haastava",
         "useita tunteja"
     ),
@@ -59,7 +59,7 @@ def add_seed():
     ),
     (
         "Tee oma playlist vähintään 15 biisistä",
-        "Luo Spotifyyn, YouTubeen tai muuhun palveluun playlist jossa on vähintään 15 kappaletta. Playlistan pitää noudattaa jotain teemaa tai tunnelmaa — ei sekalainen sattuma.",
+        "Luo Spotifyyn, YouTubeen tai muuhun palveluun playlist jossa on vähintään 15 kappaletta. Playlistin pitää noudattaa jotain teemaa tai tunnelmaa, ei sekalainen sattuma.",
         "helppo",
         "15–30 min"
     ),
@@ -71,19 +71,19 @@ def add_seed():
     ),
     (
         "Asenna Linux, käytä sitä viikon ajan ja asenna sitten Windows takaisin",
-        "Asenna jokin Linux-distro (esim. Ubuntu tai Fedora) koneellesi ja käytä sitä ainoana käyttöjärjestelmänä viikon ajan. Viikon jälkeen saat asentaa Windowsin takaisin — tai sitten et.",
+        "Asenna jokin Linux-distro (esim. Ubuntu tai Fedora) koneellesi ja käytä sitä ainoana käyttöjärjestelmänä viikon ajan. Viikon jälkeen saat asentaa Windowsin takaisin, tai sitten et.",
         "erittäin haastava",
         "useita päiviä"
     ),
     (
         "Kirjoita käsin runo siitä miksi TIRA on hankalaa",
-        "Kirjoita käsin, paperille, runo joka kuvaa tietorakenteet ja algoritmit -kurssin tuskaa. Runon ei tarvitse olla pitkä, mutta sen pitää olla aito. Voit halutessasi julkaista sen kurssin Telegramissa.",
+        "Kirjoita käsin, paperille, runo joka kuvaa tietorakenteet ja algoritmit -kurssin tuskaa. Runon ei tarvitse olla pitkä, mutta sen pitää olla aito.",
         "helppo",
         "15–30 min"
     ),
     (
         "Juo vain vettä 30 päivän ajan",
-        "Ei kahvia, ei energiajuomia, ei mehua, ei alkoholia — pelkkää vettä 30 päivän ajan. TKT-opiskelijalle tämä on todennäköisesti vaikein tämän sivuston questiiteista.",
+        "Ei kahvia, ei energiajuomia, ei mehua, ei alkoholia. Pelkkää vettä 30 päivän ajan. TKT-opiskelijalle tämä on todennäköisesti vaikein tämän sivuston questiiteista.",
         "erittäin haastava",
         "useita päiviä"
     ),
