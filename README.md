@@ -20,6 +20,7 @@ Generate a secure key with: python -c "import secrets; print(secrets.token_hex(3
 
 
 Create the database: sqlite3 database.db < schema.sql
+
 Run the application: flask run
 if flask isn't in path, try:python -m flask run
 
